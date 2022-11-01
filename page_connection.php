@@ -9,27 +9,26 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
-  .contenaire {
-    height: 10%;
-    width: 80%;
-    border: 5px;
-  }
-
-  .col {
-    width: 25%;
-  }
-
-  .row.input {
-
-    width: 25%;
-  }
+    <script>
+         function checkEmail(email) {
+             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+             return re.test(email);
+         }
+         function validate() {
+             var email = document.getElementById("e-mail").value;
+         
+             if (checkEmail(email)) {
+                 alert('Adresse e-mail valide');
+             } else {
+                 alert('Adresse e-mail non valide');
+             }
+             return false;
+         }
+      </script>
+</head>
 
 <body>
-        <!-- menu -->
-    <?php
-    /* link de connection */
-    include("fichier_connection.php");  
-      ?>
+   
     <div class="logo" style="background-color:#f8f9fa;position:fixed;width:100%;" >
          <div><img src="photos/images.jpeg" data-toggle="modal" data-target="#exampleModal"></div>
            <div class="menu">
@@ -44,7 +43,7 @@
   </div>
 
   <!--  <div class="contenaire" style="height: 60%;border:solid 2px;padding:10%;margin-top:0%;"> -->
-  <form  onsubmit="validateForm(this)"  style="height: 50px;display: flex;justify-content:center;margin-top:-795px;">
+  <form  onsubmit="validateForm(this)"  style="height: 50px;display: flex;justify-content:center;margin-top:-795px;" method="post" action="action.php">
     <div class="contenaire" style=" height:30px;padding:10%;margin-top:10px;">
       <div class="contenaire" style="border:solid 2px;height:700px;margin-left:10%; border-radius: 10px;">
         <div class="contenaire" style="margin-left :150px;">
@@ -53,9 +52,16 @@
           </div>
           <div class="row mb-3" style="margin-left:50px;">
 
+          </div>
+          <div class="form-row" style="margin-left:57px;">
+            <div class="col">
+              <label for="email">EMAIL</label>
+              <input type="email" class="form-control" placeholder="email"required name="email" id="email" style="width: 68%;">
+              
+            </div>
             <div class="col">
               <label for="mot_de_passe">MOT DE PASSE</label>
-              <input type="text" class="form-control" placeholder="mot_de_passe" id="mot_de_passe" required style="width: 68%;">
+              <input type="password" class="form-control" placeholder="mot_de_passe"minlength="8" id="mot_de_passe" required style="width: 68%;" name="mdp">
               <div class="invalid-feedback">
                 Veuillez entrer un bon mot de passe </div>
             </div>
@@ -63,7 +69,7 @@
 
           </div>
           <div class="row mb-3">
-          <button type="submit" class="btn btn-primary" style="background-color:blue;margin-left:10%;margin-top:50px;width:60%; ">CONNECTER</button>
+          <button type="submit" class="btn btn-primary" style="background-color:blue;margin-left:10%;margin-top:50px;width:60%;" name="submit">CONNECTER</button>
           </div>
 
 
@@ -73,15 +79,15 @@
       </div>
     </div>
   </form>
-</div>
+<!-- </div> -->
 
-             <div class="form-outline form-white mb-4"style="border-radius:2px;" >
+            <!--  <div class="form-outline form-white mb-4"style="border-radius:2px;" >
                 <label class="form-label" for="typePasswordX"style="margin-left: -500px;">Password</label>
                 <input type="password" id="typePasswordX" class="form-control form-control-lg" />
                
               </div> 
                <div class="form-outline form-white mb-4"style="margint-top:80%;">
-                  <button type="button" class="btn btn-primary" 
+                  <button type="submit" class="btn btn-primary" name="submit"
                   style="background-color:blue;margin-left:0%;width: 550px; height: 50px;">CONNECTION</button>
               </div>  
             </div>
@@ -98,35 +104,33 @@
     border: 2px;
   }
 
-             if (checkEmail(email)) {
-                 alert('Adresse e-mail valide');
-             } else {
-                 alert('Adresse e-mail non valide');
-             }
+  .contenaire {
+    height: 10%;
+    width: 80%;
+    border: 5px;
+  }
 
   .col {
     width: 25%;
   }
 
-          <!--  --> 
-          <?php 
-           /* recuppération des saisis */
-      $email= $_POST['e-mail'];
-      $prenom= $_POST['mot_de_passe'];
-/* insertion */
+  .row.input {
 
-$sql = "INSERT INTO `visiteurs` ( `nom`, `prenom`, `age`, `paye`, `sexe`, `dateInscrit`)
-VALUES( 'Griffin', 'Peter', 35, 'France', 'Homme', '2003-01-12'),
-( 'Glenn', 'Roberta', 19, 'Brésil', 'femme', '2003-02-12')
-";
+    width: 25%;
+  }
 
-if ($conn->query($sql) === TRUE) {
-  echo "les nouveaux enregistrements ajoutés avec succés";
-} else {
-  echo "Erreur: " . $sql . "
-" . $conn->error;
-}
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10%;
+  }
 
+  .menu {
+    margin-left: 1300px;
+
+  }
+</style>
 
  
 </body>

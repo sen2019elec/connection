@@ -9,9 +9,28 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+  <script>
+         function checkEmail(email) {
+          var re =/^(([^<>()[].,;:\s@"]+(.[^<>()[].,;:\s@"]+)*)|(".+"))@(([^<>()[].,;:\s@"]+.)+[^<>()[].,;:\s@"]{2,})$/i;
+            
+         }
+         function validate() {
+             var email = document.getElementById("e-mail").value;
+         
+             if (checkEmail(email)) {
+                 alert('Adresse e-mail valide');
+             } else {
+                 alert('Adresse e-mail non valide');
+             }
+             return false;
+         }
+      </script>
 </head>
 
 <body>
+  <?php 
+include("co.php"); ?>
 
   <div class="logo" style="background-color:#f8f9fa;position:fixed;width:100%;">
     <div><img src="photos/images.jpeg" data-toggle="modal" data-target="#exampleModal"></div>
@@ -19,7 +38,7 @@
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
 
-          <button class="btn btn-outline-success" type="submit"><a href="page_connection.php"> Connection</a></button>
+          <button class="btn btn-outline-success" ><a href="page_connection.php"> Connection</a></button>
         </div>
       </nav>
     </div>
@@ -30,62 +49,53 @@
   <div>
     <img src="photos/images4.jpg" class="img-fluid" alt="Responsive image" style="height:120px;margin: 26%;width:48%;margin-top:7%;">
   </div>
-
-  <!--  <div class="contenaire" style="height: 60%;border:solid 2px;padding:10%;margin-top:0%;"> -->
-  <form style="height: 50px;display: flex;justify-content:center;margin-top:-795px;">
-    <div class="contenaire" style=" height:30px;padding:10%;margin-top:10px;">
+  <!-- name permet de voir les infos envoyer dans le bdd -->
+  <!-- la methode post est utilisé pour ajouter des informations dans une base de donnés -->
+  <form action="co.php" method="post" style="height: 50px;display: flex;justify-content:center;margin-top:-795px;">
+     <div class="contenaire" style=" height:30px;padding:10%;margin-top:10px;">
       <div class="contenaire" style="border:solid 2px;height:700px;margin-left:10%; border-radius: 10px;">
-        <div class="contenaire" style="margin-left :150px;">
-          <div class="titre" style="border-radius: 5px;background-color:blue;width:60%;margin-left:10%;">
+        <div class="contenaire" style="margin-left :150px;"> 
+          <div class="titre" style="border-radius: 5px;background-color:blue;width:60%;margin-left:10%;"> 
             <h1 class="text-center" style="margin-top:200px;margin-bottom :40px;font-weight:bold;color:#f8f9fa;">PAGE INSCRIPTION </h1>
           </div>
           <div class="row mb-3">
 
             <div class="col">
               <label for="nom">NOM</label>
-              <input type="text" class="form-control" placeholder="Nom" id="nom" required style="width: 60%;">
-            
-             
-              <div class="invalid-feedback">
-                Veuillez entrer un nom </div>
+              <input type="text" class="form-control" placeholder="nom" id="nom" name="nom"required style="width: 60%;">
             </div>
             <div class="col">
               <label for="prenom">PÉNOM</label>
-              <input type="text" class="form-control" placeholder="Prénom" id="prenom" required style="width: 60%;">
-              <div class="invalid-feedback">
-                Veuillez entrer un prénom
-              </div>
+              <input type="text" class="form-control" placeholder="prenom" id="prenom" name="prenom" required style="width: 60%;">
             </div>
           </div>
           <div class="form-row">
             <div class="col">
-              <label for="e-mail">EMAIL</label>
-              <input type="text" class="form-control" placeholder="email"required style="width: 60%;">
-              <div class="invalid-feedback">
-                Veuillez entrer un e-mail
-              </div>
+              <label for="email">EMAIL</label>
+              <input type="email" class="form-control" placeholder="email"  id="email" name="email"required style="width: 60%;">
+              
             </div>
             <div class="col">
-            <label class="mr-sm-2" for="inlineFormCustomSelect" style="margin-left: 6px;">ROLE</label><br>
-      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" style="width: 58%;margin-left:7px;">
-        <option value="1">Admistrayeur</option>
-        <option value="2">Utilisateur</option>
-       
-      </select>
+            <label class="mr-sm-2" for="role" style="margin-left: 6px; ">ROLE</label><br>
+            <select class="custom-select mr-sm-2" id="role"  name="role"required style="width: 58%;margin-left:7px;">
+              <option >Admistrateur</option>
+              <option >Utilisateur</option>
               
-              <div class="invalid-feedback">
-                donner votre role
-              </div>
+            </select>
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
               <label for="mot de passe" style="margin-top: 15px;">MOT DE PASSE</label>
-              <input type="text" class="form-control" placeholder="mot de passe"required style="width: 60%;">
+              <input type="password" class="form-control" placeholder="mot_de_passe" id="mot_de_passe" name="mot_de_passe" required minlength="8" style="width: 60%;">
             </div>
+           
             <div class="col">
-              <label for="mot de passe"style="margin-top: 15px;">VALIDER MOT DE PASSE</label>
-              <input type="text" class="form-control" placeholder="mot de passe"required style="width: 60%;">
+            <label for="mot de passe"style="margin-top: 15px;">VALIDER MOT DE PASSE :</label><br>
+            <input id="mot de passe" type="password"class="form-control"  placeholder="mot_de_passe"minlength="8"style="width: 60%;">
+
+<!--               <label for="mot de passe"style="margin-top: 15px;">VALIDER MOT DE PASSE</label>
+              <input type="password" class="form-control" placeholder="validation_mot_de_passe"id="" name="" required minlength="8" style="width: 60%;"> -->
             </div>
           </div>
 
@@ -93,52 +103,47 @@
             <div class="col">
               <!--  <input type="text" class="form-control" placeholder="inséré image " style="width: 40%;margin-left:20%;">-->
               <div class="custom-file" style="width: 50%;margin-left:20%;" style="margin-top: 50px;">
-                <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                <input type="file" class="custom-file-input" id="photo" lang="es" name="photo">
                 <label class="custom-file-label" for="customFileLang">insérer un photo</label>
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary" style="background-color:blue;margin-left:62%;margin-top:50px; ">INSCRIPTION</button>
+          <input type="submit" name="submit" class="btn btn-primary" style="background-color:blue;margin-left:62%;margin-top:50px; " value="INSCRIPTION">
         </div>
       </div>
     </div>
   </form>
- <!-- partie js -->
-  <script>
-         function checkEmail(email) {
-             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-             return re.test(email);
-         }
-         function validate() {
-             var email = document.getElementById("email").value;
-         
-             if (checkEmail(email)) {
-                 alert('Adresse e-mail valide');
-             } else {
-                 alert('Adresse e-mail non valide');
-             }
-             return false;
-         }
-      </script>
-      <!--  -->
-
-      <!-- php -->
-      <?php
-      /* recuppération des saisis */
-      $nom= $_POST['nom'];
-      $prenom= $_POST['prenom'];
-      $email= $_POST['e-mail'];
-      $role= $_POST['role'];
-      $mot_de_passe= $_POST['mot_de_passe'];
-      $prenom= $_POST['validation_mot_de_passe'];
-      $prenom= $_POST['validation_mot_de_passe'];
-      $prenom= $_POST['customFileLang'];
-      /* insertion */
-      
-      
-
-      ?>
-      <!--  -->
+  
 </body>
+<style>
+ 
+
+ .contenaire {
+    height: 10%;
+    width: 80%;
+    border: 5px;
+  }
+
+  .col {
+    width: 25%;
+  }
+
+  .row.input {
+
+    width: 25%;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10%;
+  }
+
+  .menu {
+    margin-left: 1300px;
+
+  }
+</style>
 
 </html>
