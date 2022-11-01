@@ -8,11 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-</head>
-<style>
-.body {
-    border: 2px;
-  }
 
   .contenaire {
     height: 10%;
@@ -29,19 +24,6 @@
     width: 25%;
   }
 
-  .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10%;
-  }
-
-  .menu {
-    margin-left: 1300px;
-
-  }
-</style>
-</style>
 <body>
         <!-- menu -->
     <?php
@@ -52,10 +34,7 @@
          <div><img src="photos/images.jpeg" data-toggle="modal" data-target="#exampleModal"></div>
            <div class="menu">
            <nav class="navbar navbar-expand-lg bg-light">
-               <div class="container-fluid">
-
-              <button class="btn btn-outline-success" type="submit"><a href="connection.php"> Déconnection</a></button>
-              </div>
+              
            </nav>
         </div>
     </div> 
@@ -81,13 +60,6 @@
                 Veuillez entrer un bon mot de passe </div>
             </div>
             
-          </div>
-          <div class="form-row" style="margin-left:57px;">
-            <div class="col">
-              <label for="e-mail">EMAIL</label>
-              <input type="text" class="form-control" placeholder="e-mail"required  style="width: 68%;">
-              
-            </div>
 
           </div>
           <div class="row mb-3">
@@ -118,24 +90,24 @@
             </div>
             </div>
             </div></div>   
-                      <!--  -->
-          <script>
-         function checkEmail(email) {
-             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-             return re.test(email);
-         }
-         function validate() {
-             var email = document.getElementById("email").value;
-         
+             -->          <!--  -->
+     
+        
+        <style>
+.body {
+    border: 2px;
+  }
+
              if (checkEmail(email)) {
                  alert('Adresse e-mail valide');
              } else {
                  alert('Adresse e-mail non valide');
              }
-             return false;
-         }
-      </script>
-  
+
+  .col {
+    width: 25%;
+  }
+
           <!--  --> 
           <?php 
            /* recuppération des saisis */
@@ -155,8 +127,7 @@ if ($conn->query($sql) === TRUE) {
 " . $conn->error;
 }
 
-     
-        ?>           
+
  
 </body>
 </html>

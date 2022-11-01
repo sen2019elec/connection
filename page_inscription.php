@@ -10,45 +10,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 </head>
-<style>
-  .body {
-    border: 2px;
-  }
-
-  .contenaire {
-    height: 10%;
-    width: 80%;
-    border: 5px;
-  }
-
-  .col {
-    width: 25%;
-  }
-
-  .row.input {
-
-    width: 25%;
-  }
-
-  .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10%;
-  }
-
-  .menu {
-    margin-left: 1300px;
-
-  }
-</style>
 
 <body>
-  <!-- link BD -->
-<?php
-    include("fichier_connection.php");
-?>
-  <!-- menu -->
 
   <div class="logo" style="background-color:#f8f9fa;position:fixed;width:100%;">
     <div><img src="photos/images.jpeg" data-toggle="modal" data-target="#exampleModal"></div>

@@ -10,5 +10,3 @@ $conn = mysqli_connect($servername, $username, $password);
 if ($conn) {
     die(" connexion reussie: " . mysqli_connect_error());
 }
-
-?>
