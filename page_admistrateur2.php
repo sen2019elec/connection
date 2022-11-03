@@ -87,74 +87,21 @@
     <div class="container">
      
       <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>NOM</th>
-            <th>PRENOM</th>
-            <th>E-MAIL</th>
-            <th>MATR..</th>
-           <th>ROLE</th>
-            <th>ACTION</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>FALL</td>
-            <td>MAMADOU</td>
-            <td>fallmodou2012@gmail.com</td>
-            <td>001</td>
-            <td>ADMISTRATEUR</td>
-            <td style=" margin-bottom: 1px;"><i class="fa-sharp fa-solid fa-pen-clip"> </i><i class="fa-sharp fa-solid fa-trash-can"></i><i class="fa-sharp fa-solid fa-share-from-square"></i></td>
-          </tr>
-         <tr>
-            <td>HANNE</td>
-            <td>GONAR</td>
-            <td>gona90@gmail.com</td>
-            <td>002</td>
-            <td>ADMISTRATEUR</td>
-            <td><i class="fa-sharp fa-solid fa-pen-clip"></i><i class="fa-sharp fa-solid fa-trash-can"></i><i class="fa-sharp fa-solid fa-share-from-square"></i></td>
-          </tr>
-          <tr>
-            <td>DIOP</td>
-            <td>JOSÉPHINE</td>
-            <td>soso90@gmail.com</td>
-            <td>003</td>
-            <td>ADMISTRATEUR</td>
-            <td><i class="fa-sharp fa-solid fa-pen-clip"></i><i class="fa-sharp fa-solid fa-trash-can"></i><i class="fa-sharp fa-solid fa-share-from-square"></i></td>
-          </tr>
-          <tr>
-            <td>CAMARA</td>
-            <td>FATOU</td>
-            <td>toufa90@gmail.com</td>
-            <td>004</td>
-            <td>UTILISATEUR</td>
-            <td><i class="fa-sharp fa-solid fa-pen-clip"></i><i class="fa-sharp fa-solid fa-trash-can"></i><i class="fa-sharp fa-solid fa-share-from-square"></i></td>
-          </tr>
-          <tr>
-            <td>NDIAYE </td>
-            <td>AZIZ</td>
-            <td>aziz2005@gmail.com</td>
-            <td>005</td>
-            <td>UTILISATEUR</td>
-            <td><i class="fa-sharp fa-solid fa-pen-clip"></i><i class="fa-sharp fa-solid fa-trash-can"></i><i class="fa-sharp fa-solid fa-share-from-square"></i></td>
-          </tr>
-          <tr>
-            <td>GUEYE</td>
-            <td>ABDOU</td>
-            <td>guaye80@gmail.com</td>
-            <td>006</td>
-            <td>UTILISATEUR</td>
-            <td><i class="fa-sharp fa-solid fa-pen-clip"></i><i class="fa-sharp fa-solid fa-trash-can"></i><i class="fa-sharp fa-solid fa-share-from-square"></i></td>
-          </tr>
-          <tr>
-            <td>WADE</td>
-            <td>MAMA</td>
-            <td>wade2002@gmail.com</td>
-            <td>007</td>
-            <td>ADMISTRATEUR</td>
-            <td><i class="fa-sharp fa-solid fa-pen-clip"></i><i class="fa-sharp fa-solid fa-trash-can"></i><i class="fa-sharp fa-solid fa-share-from-square"></i></td>
-          </tr>
-        </tbody>
+      <thead style="background-color:blue ; color:#f8f9fa;">
+        <?php 
+
+                    include("fichier_connection.php"); 
+                     echo '<th class="thliste">NOM</th>';
+                     echo '<th class="thliste">PRENOM</th>';
+                     echo '<th class="thliste">EMAIL</th>';
+                     echo '<th class="thliste">MATRICULE</th>';
+                     echo '<th class="thliste">ROLE</th>';
+                     echo '<th class="thliste">ACTION</th>';
+                    echo '</tr>';
+
+            ?>  
+
+           </thead>
       </table>
      
 
@@ -162,9 +109,7 @@
          
         </div>
       </div>
-   
-  </form>
-  <nav aria-label="Page navigation example" style="margin-top: 50px;margin-left:40%;">
+   <nav aria-label="Page navigation example" style="margin-top: 50px;margin-left:40%;">
   <ul class="pagination">
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">

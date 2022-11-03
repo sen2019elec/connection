@@ -9,23 +9,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-
-  <script>
-         function checkEmail(email) {
-          var re =/^(([^<>()[].,;:\s@"]+(.[^<>()[].,;:\s@"]+)*)|(".+"))@(([^<>()[].,;:\s@"]+.)+[^<>()[].,;:\s@"]{2,})$/i;
-            
-         }
-         function validate() {
-             var email = document.getElementById("e-mail").value;
-         
-             if (checkEmail(email)) {
-                 alert('Adresse e-mail valide');
-             } else {
-                 alert('Adresse e-mail non valide');
-             }
-             return false;
-         }
-      </script>
 </head>
 
 <body>

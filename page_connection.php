@@ -9,22 +9,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
-    <script>
-         function checkEmail(email) {
-             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-             return re.test(email);
-         }
-         function validate() {
-             var email = document.getElementById("e-mail").value;
-         
-             if (checkEmail(email)) {
-                 alert('Adresse e-mail valide');
-             } else {
-                 alert('Adresse e-mail non valide');
-             }
-             return false;
-         }
-      </script>
+    
 </head>
 
 <body>
@@ -50,9 +35,7 @@
           <div class="titre" style="border-radius: 5px;background-color:blue;width:60%;margin-left:10%;">
             <h1 class="text-center" style="margin-top:200px;margin-bottom :40px;font-weight:bold;color:#f8f9fa;">PAGE DE CONNECTION </h1>
           </div>
-          <div class="row mb-3" style="margin-left:50px;">
-
-          </div>
+          
           <div class="form-row" style="margin-left:57px;">
             <div class="col">
               <label for="email">EMAIL</label>
