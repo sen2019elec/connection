@@ -1,3 +1,4 @@
+<?php include"action.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,9 @@
 </head>
 
 <body>
-   
+<!-- <?php 
+// include("action.php"); 
+?> -->
     <div class="logo" style="background-color:#f8f9fa;position:fixed;width:100%;" >
          <div><img src="photos/images.jpeg" data-toggle="modal" data-target="#exampleModal"></div>
            <div class="menu">
@@ -28,7 +31,7 @@
   </div>
 
   <!--  <div class="contenaire" style="height: 60%;border:solid 2px;padding:10%;margin-top:0%;"> -->
-  <form  onsubmit="validateForm(this)"  style="height: 50px;display: flex;justify-content:center;margin-top:-795px;" method="post" action="action.php">
+  <form  onsubmit="validateForm(this)" id="forms" style="height: 50px;display: flex;justify-content:center;margin-top:-795px;" method="post" action="action.php">
     <div class="contenaire" style=" height:30px;padding:10%;margin-top:10px;">
       <div class="contenaire" style="border:solid 2px;height:700px;margin-left:10%; border-radius: 10px;">
         <div class="contenaire" style="margin-left :150px;">
@@ -39,14 +42,15 @@
           <div class="form-row" style="margin-left:57px;">
             <div class="col">
               <label for="email">EMAIL</label>
-              <input type="email" class="form-control" placeholder="email"required name="email" id="email" style="width: 68%;">
-              
+              <input type="email" class="form-control" placeholder="email"name="email" id="email" style="width: 68%;">
+              <p id="error1" style="color:red;"></p>
             </div>
             <div class="col">
               <label for="mot_de_passe">MOT DE PASSE</label>
-              <input type="password" class="form-control" placeholder="mot_de_passe"minlength="8" id="mot_de_passe" required style="width: 68%;" name="mdp">
-              <div class="invalid-feedback">
-                Veuillez entrer un bon mot de passe </div>
+              <input type="password" class="form-control" placeholder="mot_de_passe"minlength="8" id="mot_de_passe"  style="width: 68%;" name="mdp">
+             <!--  <div class="invalid-feedback">
+                Veuillez entrer un bon mot de passe </div> -->
+                <p id="error2" style="color:red;"></p>
             </div>
             
 
@@ -114,7 +118,7 @@
 
   }
 </style>
-
+<script src="connection.js"></script>
  
 </body>
 </html>

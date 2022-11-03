@@ -10,13 +10,12 @@
      
                     /* insertion */
                      include("fichier_connection.php");
-                    $sth = $dbco->prepare(" SELECT * FROM inscription WHERE  `e-mail`='".$email."'");
+                    $sth = $dbco->prepare(" SELECT * FROM inscription WHERE  `e-mail`='$email'");
                 /*    $sth->execute();
                   $res = $sth->fetch(PDO::FETCH_ASSOC); */
-                  
+                 
                   $sth->execute(); 
-                  $res = $sth->fetchAll(PDO::FETCH_ASSOC); 
-                  var_dump($res);
+                  $res = $sth->fetch(PDO::FETCH_ASSOC)/* [0] */; 
                     if(count($res) > 0 && password_verify($mdp,$res['mdp']) && $res["roles"] == 'Admistrateur')
                   {     header('Location: page_admistrateur.php');
                       

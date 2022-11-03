@@ -49,9 +49,9 @@
     <div><img src="photos/images.jpeg" data-toggle="modal" data-target="#exampleModal"></div>
     <div class="menu">
       <nav class="navbar navbar-expand-lg bg-light" style="margin-left: -50px;">
-        <div class="contenaire" style="width: 100px; border:solid 1px; margin-left:-30px;height: 100px;margin-top:1px;">
+        <!-- <div class="contenaire" style="width: 100px; border:solid 1px; margin-left:-30px;height: 100px;margin-top:1px;">
         <img src="photos/photo1.jpg" alt="" style="width: 100px;height: 100px;"><br><p>  M.FALL:001</p>
-        </div>
+        </div> -->
         <div class="container-fluid">
 
           <button class="btn btn-outline-success" type="submit"><a href="page_connection.php"> Déconnection</a></button>
@@ -90,7 +90,7 @@
       <thead style="background-color:blue ; color:#f8f9fa;">
         <?php 
 
-                    include("fichier_connection.php"); 
+                    //include("fichier_connection.php"); 
                      echo '<th class="thliste">NOM</th>';
                      echo '<th class="thliste">PRENOM</th>';
                      echo '<th class="thliste">EMAIL</th>';
@@ -102,6 +102,33 @@
             ?>  
 
            </thead>
+           <tbody>
+           <?php 
+                 include "fichier_connection.php";
+                $sql = "SELECT * FROM inscription WHERE etat=1";
+                $reponse=$dbco->prepare($sql);
+                $reponse->execute();
+                /* var_dump($reponse);
+                exit; */
+                // $reponse = $dbco->query($sql);
+                 while($donnees = $reponse->fetch(PDO::FETCH_ASSOC)) // Renvoit les valeurs de la bdd
+                 {
+                   echo '<tr>';
+                   /* echo '<td class="tdliste">' . $donnees['id'] . '</td>'; */
+                   echo '<td class="tdliste">' . $donnees['nom'] . '</td>';
+                   echo '<td class="tdliste">' . $donnees['prenom'] . '</td>';
+                   echo '<td class="tdliste">' . $donnees['e-mail'] . '</td>';
+                    echo '<td class="tdliste">' . $donnees['matricule'] . '</td>';
+                    echo '<td class="tdliste">' . $donnees['roles'] . '</td>';
+                    // echo '<td class="tdliste">' . $donnees['ACTION'] . '</td>';
+                    echo '</tr>';
+                 }
+                  //      echo '</table></div></center>';
+                  // $pdo = null;
+            ?>
+
+           </tbody>
+
       </table>
      
 
@@ -109,7 +136,7 @@
          
         </div>
       </div>
-   <nav aria-label="Page navigation example" style="margin-top: 50px;margin-left:40%;">
+   <nav aria-label="Page navigation example" style="margin-top: 780px;margin-left:45%;">
   <ul class="pagination">
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
@@ -125,6 +152,8 @@
     </li>
   </ul>
 </nav>
+  </form>
+  
   
 
 </body>
