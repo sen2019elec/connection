@@ -82,6 +82,7 @@ include("co.php"); ?>
             <label for="mot de passe"style="margin-top: 15px;">VALIDER MOT DE PASSE :</label><br>
             <input id="valide_mot_de_passe" type="password"class="form-control"  placeholder="mot_de_passe"minlength="8"style="width: 60%;">
             <p id="error6" style="color:red;"></p>
+            <p id="error7" style="color:red;"></p>
             </div>
           </div>
 

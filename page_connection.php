@@ -41,26 +41,24 @@
           
           <div class="form-row" style="margin-left:57px;">
             <div class="col">
-              <label for="email">EMAIL</label>
-              <input type="email" class="form-control" placeholder="email"name="email" id="email" style="width: 68%;">
+              <label for="email" style="margin-left:-20%;">EMAIL</label>
+              <input type="email" class="form-control" placeholder="email"name="email" id="email" style="width: 68%;margin-left:-20%;">
               <p id="error1" style="color:red;"></p>
             </div>
             <div class="col">
-              <label for="mot_de_passe">MOT DE PASSE</label>
-              <input type="password" class="form-control" placeholder="mot_de_passe"minlength="8" id="mot_de_passe"  style="width: 68%;" name="mdp">
+              <label for="mot_de_passe" style="margin-left:-20%;">MOT DE PASSE</label>
+              <input type="password" class="form-control" placeholder="mot_de_passe"minlength="8" id="mot_de_passe"  style="width: 68%;margin-left:-20%;" name="mdp">
              <!--  <div class="invalid-feedback">
                 Veuillez entrer un bon mot de passe </div> -->
                 <p id="error2" style="color:red;"></p>
             </div>
-            
-
           </div>
           <div class="row mb-3">
           <button type="submit" class="btn btn-primary" style="background-color:blue;margin-left:10%;margin-top:50px;width:60%;" name="submit">CONNECTER</button>
           </div>
 
 
-          <button type="submit" class="btn btn-primary" style="background-color:blue;margin-left:52%;margin-top:30px; "><a href="page_inscription.php"> INSCRIPTION</a></button>
+          <a href="page_inscription.php" class="bt" style="color:blue;margin-left:32%;margin-top:60px;"> INSCRIPTION</a>
          
         </div>
       </div>

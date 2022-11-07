@@ -1,7 +1,7 @@
-
+/* 
          function checkEmail(email) {
           var re =/^(([^<>()[].,;:\s@"]+(.[^<>()[].,;:\s@"]+)*)|(".+"))@(([^<>()[].,;:\s@"]+.)+[^<>()[].,;:\s@"]{2,})$/i;
-            
+                     
          }
          function validate() {
              var mail = document.getElementById("email").value;
@@ -13,7 +13,8 @@
                  alert('Adresse e-mail non valide');
              }
              return false;
-         } 
+         }  
+
          var forms=document.getElementById('forms');
 
          forms.addEventListener ("submit", function(e) {
@@ -22,7 +23,7 @@
          var email = document.getElementById('email');
          var mot_de_passe=document.getElementById("mot_de_passe");
          var valide_mot_de_passe=document.getElementById("valide_mot_de_passe");
-         var error1, error2, error3,error5,error6;
+         var error1, error2, error3,error5,error6,error7;
 
 
           
@@ -69,14 +70,25 @@
               }
               else{
                 document.getElementById('error5').innerHTML=""; }
-              if (!valide_mot_de_passe.value.trim()) {
+
+
+
+                if (!valide_mot_de_passe.value.trim()) {
                 error6="Veillez renseignez le mdp";
               }
-              if (error6) {
+              if(mot_de_passe != valide_mot_de_passe){
+                  error7="Les mots de passe ne sont pas identiques";
+                  
+                }
+              
+              if (error7) {
                 e.preventDefault();
-                document.getElementById('error6').innerHTML=error6;
+                document.getElementById('error7').innerHTML=error7;
                 return false;
               }
+              
               else{
-                document.getElementById('error6').innerHTML=""; }
-        })
+                document.getElementById('error7').innerHTML=""; }
+
+
+        }) */

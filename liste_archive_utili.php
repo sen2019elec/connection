@@ -1,5 +1,3 @@
-<?php session_start();?><!--  activation des sections pour savoir ce lui qui connecte  -->
-<?php require "fichier_connection.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,20 +47,14 @@
   }
 </style>
 <body>
-    <?php 
-   
- 
-/*  affichage information  de ce lui qui connect  */
-   
-       $id = $_SESSION['identifiant']; 
-      $sql2 = "SELECT * FROM inscription WHERE id = $id";
-      $stmt = $dbco->prepare($sql2);
-      $stmt->execute();
-      $affich = $stmt ->fetch(PDO::FETCH_ASSOC);
-      $prenom = $affich['prenom'];
-      $nom = $affich['nom'];
-      $matricule = $affich['matricule'];
-    ?><!-- menu -->
+<?php 
+    /* connection bdd et recherche  */ 
+    include "fichier_connection.php";
+    $articles;
+
+      $articles=$dbco->query('SELECT nom FROM inscription ORDER BY id DESC');
+    ?>
+      <!-- menu -->
 
   <div class="logo" style="background-color:#f8f9fa;position:fixed;width:100%;">
     <div><img src="photos/images.jpeg" data-toggle="modal" data-target="#exampleModal"></div>
@@ -71,16 +63,11 @@
         <!-- <div class="contenaire" style="width: 100px; border:solid 1px; margin-left:-30px;height: 100px;margin-top:1px;">
         <img src="photos/photo1.jpg" alt="" style="width: 100px;height: 100px;"><br><p>  M.FALL:001</p>
         </div> -->
-        <div class="contenaire" style="margin-left:-2% ;">
-        <?php echo $prenom." ".$nom;?><br>
-        <?php echo $matricule;?>
-        </div>
         <div class="container-fluid">
-         
+
           <button class="btn btn-outline-success" type="submit"><a href="page_connection.php"> Déconnection</a></button>
         </div>
       </nav>
-      
     </div>
   </div>
 
@@ -95,20 +82,20 @@
       <div class="contenaire" style="border:solid 2px;height:700px;margin-left:10%; border-radius: 10px;">
         <div class="contenaire" style="margin-left :70px;display:flex; margin-top:150px;">
           <div class="titre" style="border-radius: 5px;background-color:blue;width:60%;margin-left:3px;height: 30px;">
-          <a href="page_admistrateur.php"><p class="text-center" style="margin-bottom :40px;font-weight:bold;
-            color:#f8f9fa;">PAGE ADMISTRATEUR </p></a>
-            </div> 
+            <p class="text-center" style="margin-bottom :40px;font-weight:bold;
+            color:#f8f9fa;">LISTE DES ARCHIVES </p>
+          </div> 
             <!--  -->
-            <div class="ach"><a  href="liste_archivage.php"><p>archives</p></a></div>
+             <div class="ach"><a  href="page_admistrateur2.php"><p>retour</p></a></div>
           <div>
           <form method="get" action=""  >
       <div style=" padding-left:70%;display:flex;justify-content:center;align-items:center;">
-      <input class="form_control" type="search" placeholder="rechercher"style="height: 30px;" name="search">
-      <button class="btn-success" type="submit"style="height: 30px;" >recherche</button>
+      <input class="form_control" type="search" placeholder="rechercher"style="height: 30px;"name="search">
+      <button class="btn-successe" type="submit"style="height: 30px;background-color:
+green;color:#f8f9fa;">recherche</button>
       </div>
       
     </form></div>
-
       <!--  -->
     </div>
     <div class="container">
@@ -116,73 +103,55 @@
       <table class="table table-bordered">
         <thead style="background-color:blue ; color:#f8f9fa;">
         <?php 
+        
+        
  
                      echo '<th class="thliste">NOM</th>';
                      echo '<th class="thliste">PRENOM</th>';
                      echo '<th class="thliste">EMAIL</th>';
                      echo '<th class="thliste">MATRICULE</th>';
                      echo '<th class="thliste">ROLE</th>';
-                     echo '<th class="thliste">ACTION</th>';
+                    /*  echo '<th class="thliste">ACTION</th>'; */
                     echo '</tr>';
 
             ?>  
        </thead>
-        
-        <tbody>
+       <tbody>
         <?php 
-               
+                  include "fichier_connection.php"; 
                  /* include "archive.php"; */
-                 /* affichages les inscrits */
-                 $id = $_SESSION['identifiant'];
-                 $sql = "SELECT * FROM inscription WHERE etat=1 AND id != $id";
-                 $reponse=$dbco->query($sql);
+
+                $sql = "SELECT * FROM inscription WHERE etat=0";
                 /* var_dump($reponse);
                 exit; */
-              
-               
-               
-                   /* traitement recherche */  
+               $reponse = $dbco->query($sql);
+                /* traitement recherche */
+                
+                    
                 if((isset($_GET['search'])) && !empty($_GET['search'])){ /* permet d'effecter la recherche  */
                   $search= $_GET['search'];
-                  $reponse=$dbco->query ("SELECT * FROM inscription WHERE etat=1 AND prenom LIKE '%$search%'");
+                  $reponse=$dbco->query ("SELECT * FROM inscription WHERE etat=0 AND prenom LIKE '%$search%'");
         
-                /*   $sql = "SELECT * FROM inscription WHERE id!=$id"; /* afficher les utilisateurs sauf celui qui est connecté */
-                 /*  $reponse= $dbco->prepare($sql);
-                   $reponse->execute() ;*/
-                   
                   
               }
-
-                
-                
-              while($donnees = $reponse->fetch()) {
-                  
-                  // Renvoit les valeurs de la bdd
-                  /* recupération id */
+                 while($donnees = $reponse->fetch()) // Renvoit les valeurs de la bdd
+                 { /* recupération id */
                   $id=$donnees['id']; 
                   $etat=$donnees['etat'];
-                 
                    /* recupération des input */
                    echo '<tr>';
                    
                    echo '<td class="tdliste">' . $donnees['nom'] . '</td>';
                    echo '<td class="tdliste">' . $donnees['prenom'] . '</td>';
                    echo '<td class="tdliste">' . $donnees['e-mail'] . '</td>';
-                    echo '<td class="tdliste">' . $donnees['matricule'] . '</td>';
-                    echo '<td class="tdliste">' . $donnees['roles'] . '</td>'; 
-                   /* echo "<a href='afficher_tab_eleve.php?id=$id'
-                   onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer\")'
-                   class='btn btn-danger'></a>"; */
-                    echo '<td class="tdliste">
-                    <a onclick="return confirm(\'voulez vous vraiment modifier?\')" href="form_modification.php?updatid='.$id.'"><i class="fa-solid fa-pen"></i> </a>
-                    <a onclick="return confirm(\'voulez vous vraiment archiver?\')" href="traitement_a.php?id='.$id.'"><i class="fa-solid fa-box-archive"></i></a>
-                    <a href="switch.php?rolid='.$id.'"><i class="fa-sharp fa-solid fa-retweet"></i></a>
-                    
-                    </td>';
+                   echo '<td class="tdliste">' . $donnees['matricule'] . '</td>';
+                   echo '<td class="tdliste">' . $donnees['roles'] . '</td>'; 
+                   /* echo '<td class="tdliste">
+                    <a href="traitement_desarchive.php?desarchivid='.$id.'"><i class="fa-solid fa-download"></i> </a>
+                   </td>'; */
                     echo '</tr>';
                    
                  }
-                
 
                  /* if (isset($_GET["archive"])) {
                   $id=$_GET["archive"];
@@ -200,41 +169,8 @@
                   ?>
              </tbody>
        
-        </table> 
-    
-   
-           
-  
 
-     <!--  </table>
-      <tr>
-            <th>NOM</th>
-            <th>PRENOM</th>
-            <th>E-MAIL</th>
-            <th>MATR..</th>
-           <th>ROLE</th>
-            <th>ACTION</th>
-          </tr>  
-        </div>
-      </div> -->
-   
-                 </main>
-  <nav aria-label="Page navigation example" style="margin-top: 48%;margin-left:45%;">
-      <ul class="pagination">
-         <li class="page-item">
-             <a class="page-link" href="#" aria-label="Previous">
-             <span aria-hidden="true">&laquo;</span>
-             </a>
-             </li>
-             <li class="page-item"><a class="page-link" href="page_admistrateur.php">1</a></li>
-             <li class="page-item"><a class="page-link" href="page_admistrateur2.php">2</a></li>
-             <li class="page-item"><a class="page-link" href="#" aria-label="Next">
-             <span aria-hidden="true">&raquo;</span>
-             </a>
-           </li>
-       </ul>
-   </nav>
-  
-
-</body>
-</html>
+        </table>
+        </main>
+        </body>
+</html> 

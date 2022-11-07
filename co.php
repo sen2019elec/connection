@@ -9,7 +9,8 @@
       $role= $_POST['role'];
       /* password_hash,password_defaut criptage de mdp */
       $mdp= password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
-      $photo= $_POST['photo']; 
+      $photo= $_POST['photo'];
+       
       /* insertion */
 
             $sth = $dbco->prepare("SELECT * FROM inscription WHERE `e-mail` = '$email'"); 
