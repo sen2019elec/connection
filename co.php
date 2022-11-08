@@ -7,9 +7,15 @@
       $prenom= $_POST['prenom'];    
       $email= $_POST['email'];
       $role= $_POST['role'];
+/* debut 1 */
+@$photo=file_get_contents($_FILES['photo']['tmp_name']);
+/* fin 1 */
+
+
       /* password_hash,password_defaut criptage de mdp */
       $mdp= password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
       $photo= $_POST['photo'];
+
        
       /* insertion */
 

@@ -20,7 +20,8 @@
 
                   {  /* permet de ne pas voir le nom de celui qui connect sur la liste  */
                         session_start(); 
-                        $_SESSION['identifiant']=$res['id'];  
+                        $_SESSION['identifiant']=$res['id'];
+                        $_SESSION['photo']=$row['photo'];
                         header('Location: page_admistrateur.php');
                         
            

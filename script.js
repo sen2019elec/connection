@@ -1,4 +1,4 @@
-/* 
+
          function checkEmail(email) {
           var re =/^(([^<>()[].,;:\s@"]+(.[^<>()[].,;:\s@"]+)*)|(".+"))@(([^<>()[].,;:\s@"]+.)+[^<>()[].,;:\s@"]{2,})$/i;
                      
@@ -59,7 +59,7 @@
             else{
                 document.getElementById('error3').innerHTML=""; } 
            
-
+ /* 
               if (!mot_de_passe.value.trim()) {
                 error5="Veillez renseignez le mdp";
               }
@@ -89,6 +89,6 @@
               
               else{
                 document.getElementById('error7').innerHTML=""; }
+  */
 
-
-        }) */
+        }) 

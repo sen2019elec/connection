@@ -1,3 +1,4 @@
+<?php session_start();?><!--  activation des sections pour savoir ce lui qui connecte  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,6 +55,20 @@
 
       $articles=$dbco->query('SELECT nom FROM inscription ORDER BY id DESC');
     ?>
+       <?php 
+   
+ 
+   /*  affichage information  de ce lui qui connect  */
+      
+          $id = $_SESSION['identifiant']; 
+         $sql2 = "SELECT * FROM inscription WHERE id = $id";
+         $stmt = $dbco->prepare($sql2);
+         $stmt->execute();
+         $affich = $stmt ->fetch(PDO::FETCH_ASSOC);
+         $prenom = $affich['prenom'];
+         $nom = $affich['nom'];
+         $matricule = $affich['matricule'];
+       ?>
       <!-- menu -->
 
   <div class="logo" style="background-color:#f8f9fa;position:fixed;width:100%;">
@@ -63,6 +78,10 @@
         <!-- <div class="contenaire" style="width: 100px; border:solid 1px; margin-left:-30px;height: 100px;margin-top:1px;">
         <img src="photos/photo1.jpg" alt="" style="width: 100px;height: 100px;"><br><p>  M.FALL:001</p>
         </div> -->
+        <div class="contenaire" style="margin-left:-2% ;">
+        <?php echo $prenom." ".$nom;?><br>
+        <?php echo $matricule;?>
+        </div>
         <div class="container-fluid">
 
           <button class="btn btn-outline-success" type="submit"><a href="page_connection.php"> Déconnection</a></button>
@@ -121,7 +140,7 @@ green;color:#f8f9fa;">recherche</button>
                   include "fichier_connection.php"; 
                  /* include "archive.php"; */
 
-                $sql = "SELECT * FROM inscription WHERE etat=0";
+                $sql = "SELECT * FROM inscription WHERE etat=0 AND id != $id";
                 /* var_dump($reponse);
                 exit; */
           
