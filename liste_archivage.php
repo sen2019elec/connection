@@ -105,7 +105,7 @@
             color:#f8f9fa;">LISTE DES ARCHIVES </p>
           </div> 
             <!--  -->
-             <div class="ach"><a  href="page_admistrateur.php"><p>retour</p></a></div>
+             <div class="ach" style="margin-left: 10%;"><a  href="page_admistrateur.php"><p>actif</p></a></div>
           <div>
           <form method="get" action="">
       <div style=" padding-left:70%;display:flex;justify-content:center;align-items:center;">

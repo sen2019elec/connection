@@ -55,5 +55,10 @@ function checkEmail(email) {
       }
       else{
           document.getElementById('error3').innerHTML=""; } 
+
+
+
+
+          
      
   })

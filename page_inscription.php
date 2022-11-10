@@ -34,7 +34,7 @@ include("co.php"); ?>
   </div>
   <!-- name permet de voir les infos envoyer dans le bdd -->
   <!-- la methode post est utilisé pour ajouter des informations dans une base de donnés -->
-  <form action="co.php" method="post" id="forms" style="height: 50px;display: flex;justify-content:center;margin-top:-795px;" enctype="mul">
+  <form action="co.php" method="post" id="forms"style="height: 50px;display: flex;justify-content:center;margin-top:-795px;" enctype="multipart/form-data">
      <div class="contenaire" style=" height:30px;padding:10%;margin-top:10px;">
       <div class="contenaire" style="border:solid 2px;height:700px;margin-left:10%; border-radius: 10px;">
         <div class="contenaire" style="margin-left :150px;"> 
@@ -44,20 +44,20 @@ include("co.php"); ?>
           <div class="row mb-3">
 
             <div class="col">
-              <label for="nom">NOM</label>
+              <label for="nom">NOM <span style="color: red;">*</span></label>
               <input type="text" class="form-control" placeholder="nom" id="nom" name="nom" style="width: 60%;">
               <p id="error1" style="color:red;"></p>
             </div>
             
             <div class="col">
-              <label for="prenom">PÉNOM</label>
+              <label for="prenom">PÉNOM <span style="color: red;">*</span></label>
               <input type="text" class="form-control" placeholder="prenom" id="prenom" name="prenom"  style="width: 60%;">
               <p id="error2" style="color:red;"></p>
             </div>
           </div>
           <div class="form-row">
             <div class="col">
-              <label for="email">EMAIL</label>
+              <label for="email">EMAIL <span style="color: red;">*</span></label>
               <input type="email" class="form-control" placeholder="email"  id="email" name="email" style="width: 60%;">
               <p id="error3" style="color:red;"></p>
             </div>
@@ -73,33 +73,43 @@ include("co.php"); ?>
           </div>
           <div class="row mb-3">
             <div class="col">
-              <label for="mot de passe" style="margin-top: 15px;">MOT DE PASSE</label>
+              <label for="mot de passe" style="margin-top: 15px;">MOT DE PASSE  <span style="color: red;">*</span></label>
               <input type="password" class="form-control" placeholder="mot_de_passe" id="mot_de_passe" name="mot_de_passe" minlength="8" style="width: 60%;">
-              <p id="error5" style="color:red;"></p>
+              <p id="error4" style="color:red;"></p>
             </div>
            
             <div class="col">
-            <label for="mot de passe"style="margin-top: 15px;">VALIDER MOT DE PASSE :</label><br>
-            <input id="valide_mot_de_passe" type="password"class="form-control"  placeholder="mot_de_passe"minlength="8"style="width: 60%;">
-            <p id="error6" style="color:red;"></p>
-            <p id="error7" style="color:red;"></p>
+            <label for="mot de passe"style="margin-top: 15px;">VALIDER MOT DE PASSE <span style="color: red;">*</span></label><br>
+            <input id="valide_mot_de_passe" type="password"class="form-control"  placeholder="valide_mot_de_passe"minlength="8"style="width: 60%;">
+            <p id="error5" style="color:red;"></p>
+            <p id="error5" style="color:red;"></p>
             </div>
           </div>
 
           <div class="form-row">
-            <div class="col">
-              <!--  <input type="text" class="form-control" placeholder="inséré image " style="width: 40%;margin-left:20%;"> -->
-              <div class="custom-file" style="width: 50%;margin-left:20%;" style="margin-top: 50px;">
+        <!--     <div class="col">
+                <input type="text" class="form-control" placeholder="inséré image " style="width: 40%;margin-left:20%;"> -->
+             <!--  <div class="custom-file" style="width: 50%;margin-left:20%;" style="margin-top: 50px;">
                 <input type="file" class="custom-file-input" id="photo" lang="fr" name="photo">
                 <label class="custom-file-label" for="customFileLang">insérer un photo</label>
-              </div>
-            </div>
-          </div>
-          <input type="submit" name="submit" class="btn btn-primary" style="background-color:blue;margin-left:62%;margin-top:26px; " value="INSCRIPTION">
+              </div> -->
+           <!--  </div>  -->
+
+           <div class="col">
+  <div>
+    <input type="file" id="photo" name="photo"
+          accept=".jpg, .jpeg, .png">
+  </div>
+  <div>
+  <input type="submit" name="submit" class="btn btn-primary" style="background-color:blue;margin-left:62%;margin-top:20px; " value="INSCRIPTION">
         </div>
+</div>
+
+         <!--  </div> -->
+        
       </div>
     </div>
-  </form>
+    </div> 
   
 
   <style>

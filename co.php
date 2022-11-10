@@ -1,24 +1,25 @@
 <?php
- require "fichier_connection.php";
-
+ 
+ include "fichier_connection.php";
       /* recuppération des saisis */
     if (isset($_POST['submit'])){
       $nom= $_POST['nom'];
       $prenom= $_POST['prenom'];    
       $email= $_POST['email'];
       $role= $_POST['role'];
-/* debut 1 */
-@$photo=file_get_contents($_FILES['photo']['tmp_name']);
-/* fin 1 */
 
+  /* debut 1 */
+      $photo=file_get_contents($_FILES['photo']['tmp_name']);
+/* fin 1 */ 
 
+ 
       /* password_hash,password_defaut criptage de mdp */
       $mdp= password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
-      $photo= $_POST['photo'];
+      
 
        
       /* insertion */
-
+     
             $sth = $dbco->prepare("SELECT * FROM inscription WHERE `e-mail` = '$email'"); 
             $sth->execute();
             $res = $sth->fetchAll(PDO::FETCH_ASSOC); 
@@ -33,6 +34,7 @@
             $sth->bindValue(5, $mdp);
             $sth->bindValue(6, $photo ); 
             $sth->execute();
+
              //$sth->execute(array( /* ':prenom' =>  */$nom, /* ':nom' =>  */$prenom,/* ':date_naissance' =>  */$date, /* ':adresse' =>  */$adresse, /* ':sexe' =>  */$sexe, /* ':nat' => */ $nationalite, /* ':mail' =>  */$email, /* ':nt' =>  */$nom_tuteur, /* ':nut' =>  */$numero_tuteur)); */
                $message2.="<label>Enregistrement valide</label>";
               $sql = "SELECT id FROM inscription WHERE `e-mail` = '$email'";
@@ -45,8 +47,9 @@
                 $sql2 = "UPDATE inscription  SET  matricule = '$matricule' WHERE `e-mail` = '$email'";
                 $matricule2 = $dbco->prepare($sql2);
                 $matricule2->execute();
+              
                 $message3.="<label>Votre matricule est: '".$matricule."'</label>";
-                header("location: page_inscription.php");
+                header("location:page_inscription.php");
                 /* echo "inscription reussi";  */
               
         }

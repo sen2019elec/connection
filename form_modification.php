@@ -90,20 +90,20 @@ if(isset($_POST['nom'],$_POST['prenom'],$_POST['email'])){
           <div class="row mb-3">
 
             <div class="col">
-              <label for="nom">NOM</label>
+              <label for="nom">NOM <span style="color: red;">*</span></label>
               <input type="text" class="form-control" placeholder="nom" id="nom" name="nom" value="<?=$check["nom"] ?? null ?>" style="width: 60%;">
               <p id="error1" style="color:red;"></p>
             </div>
             
             <div class="col">
-              <label for="prenom">PÉNOM</label>
+              <label for="prenom">PÉNOM <span style="color: red;">*</span></label>
               <input type="text" class="form-control" placeholder="prenom" id="prenom" name="prenom" value="<?=$check["prenom"] ?? null ?>" style="width: 60%;">
               <p id="error2" style="color:red;"></p>
             </div>
           </div>
           <div class="form-row">
             <div class="col">
-              <label for="email">EMAIL</label>
+              <label for="email">EMAIL <span style="color: red;">*</span></label>
               <input type="email" class="form-control" placeholder="email"  id="email" name="email" value="<?=$check["e-mail"] ?? null ?>" style="width: 81%;">
               <p id="error3" style="color:red;"></p>
             

@@ -19,9 +19,10 @@
                     if(count($res) > 0 && password_verify($mdp,$res['mdp']) && $res["roles"] == 'Admistrateur')
 
                   {  /* permet de ne pas voir le nom de celui qui connect sur la liste  */
+                          /*photo  */
                         session_start(); 
                         $_SESSION['identifiant']=$res['id'];
-                        $_SESSION['photo']=$row['photo'];
+                        $_SESSION['photo']=$res['photo'];
                         header('Location: page_admistrateur.php');
                         
            

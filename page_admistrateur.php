@@ -1,5 +1,46 @@
 <?php session_start();?><!--  activation des sections pour savoir ce lui qui connecte  -->
 <?php require "fichier_connection.php";?>
+
+
+<?php
+/* **la pagination debute ici  **/
+
+// On détermine sur quelle page on se trouve
+if(isset($_GET['page']) && !empty($_GET['page'])){
+    $currentPage = (int) strip_tags($_GET['page']);
+}else{
+    $currentPage = 1;
+}
+
+
+// On détermine le nombre total d'utilisateurs
+$sql = "SELECT COUNT(*) AS nb_utilisateurs FROM inscription WHERE etat=1";
+
+// On prépare la requête
+$query = $dbco->prepare($sql);
+
+// On exécute
+$query->execute();
+
+// On récupère le nombre d'utilisateurs
+$result = $query->fetch();
+
+$nbUtilisateurs = (int) $result['nb_utilisateurs'];
+
+// On détermine le nombre d'utilisateurs par page
+$parPage = 5;
+
+// On calcule le nombre de pages total
+$pages = ceil($nbUtilisateurs / $parPage);
+
+// Calcul du 1er article de la page
+$premier = ($currentPage * $parPage) - $parPage;
+
+$sql = $dbco->prepare( "SELECT * FROM inscription WHERE etat=1  ORDER BY id DESC LIMIT $premier, $parPage");
+$sql->execute();
+/* **la pagination fin ici  **reste coté front en bas**/
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,10 +112,12 @@
         <!-- <div class="contenaire" style="width: 100px; border:solid 1px; margin-left:-30px;height: 100px;margin-top:1px;">
         <img src="photos/photo1.jpg" alt="" style="width: 100px;height: 100px;"><br><p>  M.FALL:001</p>
         </div> -->
-<?php
-echo '<img src="data:image;base64,'.base64_encode($_SESSION["photo"]).'"
- style="width: 100px;height:100px;border-radius:50%;"/>';
-?>
+        <!-- photo profile et identité -->
+        <div class="contenaire" style="margin-left:-10% ;">      
+         <?php
+              echo '<img src="data:image;base64,'.base64_encode($_SESSION['photo']).'"
+             style="width: 100px;height:100px;border-radius:50%;"/>';
+            ?></div>
 
         <div class="contenaire" style="margin-left:-2% ;">
         <?php echo $prenom." ".$nom;?><br>
@@ -224,22 +267,40 @@ echo '<img src="data:image;base64,'.base64_encode($_SESSION["photo"]).'"
       </div> -->
    
                  </main>
-  <nav aria-label="Page navigation example" style="margin-top: 48%;margin-left:45%;">
+<!--   <nav aria-label="Page navigation example" style="margin-top: 48%;margin-left:45%;">
       <ul class="pagination">
          <li class="page-item">
              <a class="page-link" href="#" aria-label="Previous">
              <span aria-hidden="true">&laquo;</span>
              </a>
              </li>
-             <li class="page-item"><a class="page-link" href="page_admistrateur.php">1</a></li>
-             <li class="page-item"><a class="page-link" href="page_admistrateur2.php">2</a></li>
+             <li class="page-item"><a class="page-link" href="">1</a></li>
+             <li class="page-item"><a class="page-link" href="">2</a></li>
              <li class="page-item"><a class="page-link" href="#" aria-label="Next">
              <span aria-hidden="true">&raquo;</span>
              </a>
            </li>
        </ul>
    </nav>
-  
+   -->
+   <nav>
+         <ul class="pagination fixed-bottom justify-content-center">
+                        <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+                        <li class="page-item <?= ($currentPage == 1)? "disabled" : "" ?>">
+                            <a href="?page=<?= $currentPage - 1 ?>" class="page-link"> <span aria-hidden="true">&laquo;</span></a>
+                        </li>
+                        <?php for($page = 1; $page <= $pages; $page++): ?>
+                          <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
+                          <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                                <a href="?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                            </li>
+                        <?php endfor ?>
+                          <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+                          <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                            <a href="?page=<?= $currentPage + 1 ?>" class="page-link"><span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                    </ul>
+                </nav>
 
 </body>
 </html>

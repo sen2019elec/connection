@@ -41,12 +41,12 @@
           
           <div class="form-row" style="margin-left:57px;">
             <div class="col">
-              <label for="email" style="margin-left:-20%;">EMAIL</label>
+              <label for="email" style="margin-left:-20%;">EMAIL <span style="color: red;">*</span></label>
               <input type="email" class="form-control" placeholder="email"name="email" id="email" style="width: 68%;margin-left:-20%;">
               <p id="error1" style="color:red;"></p>
             </div>
             <div class="col">
-              <label for="mot_de_passe" style="margin-left:-20%;">MOT DE PASSE</label>
+              <label for="mot_de_passe" style="margin-left:-20%;">MOT DE PASSE <span style="color: red;">*</span></label>
               <input type="password" class="form-control" placeholder="mot_de_passe"minlength="8" id="mot_de_passe"  style="width: 68%;margin-left:-20%;" name="mdp">
              <!--  <div class="invalid-feedback">
                 Veuillez entrer un bon mot de passe </div> -->
