@@ -22,7 +22,7 @@
                           /*photo  */
                         session_start(); 
                         $_SESSION['identifiant']=$res['id'];
-                        $_SESSION['photo']=$res['photo'];
+                         $_SESSION['photo']=$res['photo']; 
                         header('Location: page_admistrateur.php');
                         
            

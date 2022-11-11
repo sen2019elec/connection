@@ -28,7 +28,7 @@ $result = $query->fetch();
 $nbUtilisateurs = (int) $result['nb_utilisateurs'];
 
 // On détermine le nombre d'utilisateurs par page
-$parPage = 5;
+$parPage = 7;
 
 // On calcule le nombre de pages total
 $pages = ceil($nbUtilisateurs / $parPage);
@@ -36,8 +36,8 @@ $pages = ceil($nbUtilisateurs / $parPage);
 // Calcul du 1er article de la page
 $premier = ($currentPage * $parPage) - $parPage;
 
-$sql = $dbco->prepare( "SELECT * FROM inscription WHERE etat=1  ORDER BY id DESC LIMIT $premier, $parPage");
-$sql->execute();
+$reponse = $dbco->prepare( "SELECT * FROM inscription WHERE etat=1  ORDER BY id DESC LIMIT $premier, $parPage");
+$reponse->execute();
 /* **la pagination fin ici  **reste coté front en bas**/
 
 ?>
@@ -103,6 +103,7 @@ $sql->execute();
       $prenom = $affich['prenom'];
       $nom = $affich['nom'];
       $matricule = $affich['matricule'];
+      $photo = $affich['photo'];
     ?><!-- menu -->
 
   <div class="logo" style="background-color:#f8f9fa;position:fixed;width:100%;">
@@ -115,9 +116,9 @@ $sql->execute();
         <!-- photo profile et identité -->
         <div class="contenaire" style="margin-left:-10% ;">      
          <?php
-              echo '<img src="data:image;base64,'.base64_encode($_SESSION['photo']).'"
+               echo '<img src="data:image;base64,'.base64_encode($photo).'"
              style="width: 100px;height:100px;border-radius:50%;"/>';
-            ?></div>
+            ?></div> 
 
         <div class="contenaire" style="margin-left:-2% ;">
         <?php echo $prenom." ".$nom;?><br>
@@ -181,9 +182,9 @@ $sql->execute();
                
                  /* include "archive.php"; */
                  /* affichages les inscrits */
-                 $id = $_SESSION['identifiant'];
+             /*     $id = $_SESSION['identifiant'];
                  $sql = "SELECT * FROM inscription WHERE etat=1 AND id != $id";
-                 $reponse=$dbco->query($sql);
+                 $reponse=$dbco->query($sql); */
                 /* var_dump($reponse);
                 exit; */
               

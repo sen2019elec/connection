@@ -1,4 +1,46 @@
 <?php session_start();?><!--  activation des sections pour savoir ce lui qui connecte  -->
+<?php require "fichier_connection.php";?>
+
+
+<?php
+/* **la pagination debute ici  **/
+
+// On détermine sur quelle page on se trouve
+if(isset($_GET['page']) && !empty($_GET['page'])){
+    $currentPage = (int) strip_tags($_GET['page']);
+}else{
+    $currentPage = 1;
+}
+
+
+// On détermine le nombre total d'utilisateurs
+$sql = "SELECT COUNT(*) AS nb_utilisateurs FROM inscription WHERE etat=1";
+
+// On prépare la requête
+$query = $dbco->prepare($sql);
+
+// On exécute
+$query->execute();
+
+// On récupère le nombre d'utilisateurs
+$result = $query->fetch();
+
+$nbUtilisateurs = (int) $result['nb_utilisateurs'];
+
+// On détermine le nombre d'utilisateurs par page
+$parPage = 7;
+
+// On calcule le nombre de pages total
+$pages = ceil($nbUtilisateurs / $parPage);
+
+// Calcul du 1er article de la page
+$premier = ($currentPage * $parPage) - $parPage;
+
+$reponse = $dbco->prepare( "SELECT * FROM inscription WHERE etat=1  ORDER BY id DESC LIMIT $premier, $parPage");
+$reponse->execute();
+/* **la pagination fin ici  **reste coté front en bas**/
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,13 +179,13 @@ green;">recherche</button>
            </thead>
            <tbody>
            <?php 
-                 include "fichier_connection.php";
+                include "fichier_connection.php";
                  $id = $_SESSION['identifiant'];
                  $sql = "SELECT * FROM inscription WHERE etat=1 AND id != $id";
-                 $reponse=$dbco->query($sql);
-               /*  $reponse->execute(); */
-                /* var_dump($reponse);
-                exit; */
+                 /* $reponse=$dbco->query($sql);
+                 $reponse->execute();  */
+                /* var_dump($reponse); */
+              /*    exit;  */ 
                /* traitement recherche */
                 
                     

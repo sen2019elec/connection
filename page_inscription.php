@@ -34,7 +34,7 @@ include("co.php"); ?>
   </div>
   <!-- name permet de voir les infos envoyer dans le bdd -->
   <!-- la methode post est utilisé pour ajouter des informations dans une base de donnés -->
-  <form action="co.php" method="post" id="forms"style="height: 50px;display: flex;justify-content:center;margin-top:-795px;" enctype="multipart/form-data">
+  <form action="" method="post" id="forms"style="height: 50px;display: flex;justify-content:center;margin-top:-795px;" enctype="multipart/form-data">
      <div class="contenaire" style=" height:30px;padding:10%;margin-top:10px;">
       <div class="contenaire" style="border:solid 2px;height:700px;margin-left:10%; border-radius: 10px;">
         <div class="contenaire" style="margin-left :150px;"> 
@@ -87,13 +87,13 @@ include("co.php"); ?>
           </div>
 
           <div class="form-row">
-        <!--     <div class="col">
-                <input type="text" class="form-control" placeholder="inséré image " style="width: 40%;margin-left:20%;"> -->
-             <!--  <div class="custom-file" style="width: 50%;margin-left:20%;" style="margin-top: 50px;">
+           <!-- <div class="col"> -->
+          <!--       <input type="text" class="form-control" placeholder="inséré image " style="width: 40%;margin-left:20%;"> 
+              <div class="custom-file" style="width: 50%;margin-left:20%;" style="margin-top: 50px;">
                 <input type="file" class="custom-file-input" id="photo" lang="fr" name="photo">
                 <label class="custom-file-label" for="customFileLang">insérer un photo</label>
-              </div> -->
-           <!--  </div>  -->
+              </div> 
+            </div>  -->
 
            <div class="col">
   <div>
