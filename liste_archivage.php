@@ -136,7 +136,7 @@ $reponse->execute();
         </div>
         <div class="container-fluid">
 
-          <button class="btn btn-outline-success" type="submit"><a href="page_connection.php"> Déconnection</a></button>
+          <button class="btn btn-outline-success" type="submit"><a href="index.php"> Déconnection</a></button>
         </div>
       </nav>
     </div>

@@ -67,7 +67,7 @@ if(isset($_POST['nom'],$_POST['prenom'],$_POST['email'])){
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
 
-          <button class="btn btn-outline-success" ><a href="page_connection.php"> Connection</a></button>
+          <button class="btn btn-outline-success" ><a href="index.php"> Connection</a></button>
         </div>
       </nav>
     </div>

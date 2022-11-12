@@ -13,7 +13,7 @@
 
 <body>
   <?php 
-include("co.php"); ?>
+include("traitemant/co.php"); ?>
 
   <div class="logo" style="background-color:#f8f9fa;position:fixed;width:100%;">
     <div><img src="photos/images.jpeg" data-toggle="modal" data-target="#exampleModal"></div>
@@ -21,7 +21,7 @@ include("co.php"); ?>
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
 
-          <button class="btn btn-outline-success" ><a href="page_connection.php"> Connection</a></button>
+          <button class="btn btn-outline-success" ><a href="index.php"> Connection</a></button>
         </div>
       </nav>
     </div>
