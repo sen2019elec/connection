@@ -70,6 +70,8 @@ include "fichier_connection.php";?><!--  activation des sections pour savoir ce 
          $prenom = $affich['prenom'];
          $nom = $affich['nom'];
          $matricule = $affich['matricule'];
+         $photo = $affich['photo'];
+         
        ?> -->
       <!-- menu -->
 
@@ -80,6 +82,12 @@ include "fichier_connection.php";?><!--  activation des sections pour savoir ce 
         <!-- <div class="contenaire" style="width: 100px; border:solid 1px; margin-left:-30px;height: 100px;margin-top:1px;">
         <img src="photos/photo1.jpg" alt="" style="width: 100px;height: 100px;"><br><p>  M.FALL:001</p>
         </div> -->
+        <div class="contenaire" style="margin-left:-10% ;">      
+         <?php
+               echo '<img src="data:image;base64,'.base64_encode($photo).'"
+             style="width: 100px;height:100px;border-radius:50%;"/>';
+            ?></div> 
+
 
         <!--  -->
         <div class="contenaire" style="margin-left:-2% ;">

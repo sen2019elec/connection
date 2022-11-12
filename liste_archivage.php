@@ -1,4 +1,48 @@
 <?php session_start();?><!--  activation des sections pour savoir ce lui qui connecte  -->
+<?php require "fichier_connection.php";?>
+
+
+<?php
+/* **la pagination debute ici  **/
+
+// On détermine sur quelle page on se trouve
+if(isset($_GET['page']) && !empty($_GET['page'])){
+    $currentPage = (int) strip_tags($_GET['page']);
+}else{
+    $currentPage = 1;
+}
+
+
+// On détermine le nombre total d'utilisateurs
+$sql = "SELECT COUNT(*) AS nb_utilisateurs FROM inscription WHERE etat=0";
+
+// On prépare la requête
+$query = $dbco->prepare($sql);
+
+// On exécute
+$query->execute();
+
+// On récupère le nombre d'utilisateurs
+$result = $query->fetch();
+
+$nbUtilisateurs = (int) $result['nb_utilisateurs'];
+
+// On détermine le nombre d'utilisateurs par page
+$parPage = 7;
+
+// On calcule le nombre de pages total
+$pages = ceil($nbUtilisateurs / $parPage);
+
+// Calcul du 1er article de la page
+$premier = ($currentPage * $parPage) - $parPage;
+
+$reponse = $dbco->prepare( "SELECT * FROM inscription WHERE etat=0  ORDER BY id DESC LIMIT $premier, $parPage");
+$reponse->execute();
+/* **la pagination fin ici  **reste coté front en bas**/
+
+?>
+
+<?php session_start();?><!--  activation des sections pour savoir ce lui qui connecte  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,6 +112,7 @@
          $prenom = $affich['prenom'];
          $nom = $affich['nom'];
          $matricule = $affich['matricule'];
+         $photo = $affich['photo'];
        ?>
       <!-- menu -->
 
@@ -78,6 +123,13 @@
         <!-- <div class="contenaire" style="width: 100px; border:solid 1px; margin-left:-30px;height: 100px;margin-top:1px;">
         <img src="photos/photo1.jpg" alt="" style="width: 100px;height: 100px;"><br><p>  M.FALL:001</p>
         </div> -->
+        <div class="contenaire" style="margin-left:-10% ;">      
+         <?php
+               echo '<img src="data:image;base64,'.base64_encode($photo).'"
+             style="width: 100px;height:100px;border-radius:50%;"/>';
+            ?></div> 
+
+
         <div class="contenaire" style="margin-left:-2% ;">
         <?php echo $prenom." ".$nom;?><br>
         <?php echo $matricule;?>
@@ -191,5 +243,26 @@ green;color:#f8f9fa;">recherche</button>
 
         </table>
           </main>
+
+
+          <nav>
+         <ul class="pagination fixed-bottom justify-content-center">
+                        <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+                        <li class="page-item <?= ($currentPage == 1)? "disabled" : "" ?>">
+                            <a href="?page=<?= $currentPage - 1 ?>" class="page-link"> <span aria-hidden="true">&laquo;</span></a>
+                        </li>
+                        <?php for($page = 1; $page <= $pages; $page++): ?>
+                          <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
+                          <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                                <a href="?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                            </li>
+                        <?php endfor ?>
+                          <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+                          <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                            <a href="?page=<?= $currentPage + 1 ?>" class="page-link"><span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                    </ul>
+                </nav>
+
         </body>
 </html> 

@@ -12,6 +12,10 @@
                 $roles = $data["roles"];
                 $matricule = $data["matricule"];
                 $etat = $data["etat"];
+                  /* debut 1 */
+       $photo=file_get_contents($_FILES['photo']['tmp_name']);
+       /* fin 1 */ 
+        
                   /* 
             if($etat==1){
 

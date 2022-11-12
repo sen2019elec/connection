@@ -2,6 +2,7 @@
 <?php require "fichier_connection.php";?>
 
 
+
 <?php
 /* **la pagination debute ici  **/
 
@@ -104,6 +105,8 @@ $reponse->execute();
   $prenom = $affich['prenom'];
   $nom = $affich['nom'];
   $matricule = $affich['matricule'];
+  $photo = $affich['photo'];
+
 ?>
 
       <!-- menu -->
@@ -170,7 +173,7 @@ green;">recherche</button>
                      echo '<th class="thliste">PRENOM</th>';
                      echo '<th class="thliste">EMAIL</th>';
                      echo '<th class="thliste">MATRICULE</th>';
-                     echo '<th class="thliste">ROLE</th>';
+                     echo '<th class="thliste">DATE INSCRIPTION</th>';
                     /*  echo '<th class="thliste">ACTION</th>'; */
                     echo '</tr>';
 
@@ -179,9 +182,9 @@ green;">recherche</button>
            </thead>
            <tbody>
            <?php 
-                include "fichier_connection.php";
-                 $id = $_SESSION['identifiant'];
-                 $sql = "SELECT * FROM inscription WHERE etat=1 AND id != $id";
+               /*  include "fichier_connection.php"; */
+                /*  $id = $_SESSION['identifiant'];
+                 $sql = "SELECT * FROM inscription WHERE etat=1 AND id != $id"; */
                  /* $reponse=$dbco->query($sql);
                  $reponse->execute();  */
                 /* var_dump($reponse); */
@@ -207,7 +210,7 @@ green;">recherche</button>
                    echo '<td class="tdliste">' . $donnees['prenom'] . '</td>';
                    echo '<td class="tdliste">' . $donnees['e-mail'] . '</td>';
                     echo '<td class="tdliste">' . $donnees['matricule'] . '</td>';
-                    echo '<td class="tdliste">' . $donnees['roles'] . '</td>';
+                    echo '<td class="tdliste">' . $donnees['date_inscription'] . '</td>';
                    
                     // echo '<td class="tdliste">' . $donnees['ACTION'] . '</td>';
                    /*  echo '<td class="tdliste">
@@ -235,22 +238,24 @@ green;">recherche</button>
         </div>
       </div>
       </main>
-   <nav aria-label="Page navigation example" style="margin-top: 47%;margin-left:45%;">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="">1</a></li>
-    <li class="page-item"><a class="page-link" href="">2</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+      <nav>
+         <ul class="pagination fixed-bottom justify-content-center">
+                        <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+                        <li class="page-item <?= ($currentPage == 1)? "disabled" : "" ?>">
+                            <a href="?page=<?= $currentPage - 1 ?>" class="page-link"> <span aria-hidden="true">&laquo;</span></a>
+                        </li>
+                        <?php for($page = 1; $page <= $pages; $page++): ?>
+                          <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
+                          <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                                <a href="?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                            </li>
+                        <?php endfor ?>
+                          <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+                          <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                            <a href="?page=<?= $currentPage + 1 ?>" class="page-link"><span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                    </ul>
+                </nav>
 
   
   
