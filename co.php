@@ -1,6 +1,9 @@
 <?php
  
  include "fichier_connection.php";
+ $message2="";
+ $message3="";
+ $message4="";
       /* recuppération des saisis */
     if (isset($_POST['submit'])){
       $nom= $_POST['nom'];

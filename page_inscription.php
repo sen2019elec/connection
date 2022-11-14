@@ -13,7 +13,7 @@
 
 <body>
   <?php 
-include("traitemant/co.php"); ?>
+include("co.php"); ?>
 
   <div class="logo" style="background-color:#f8f9fa;position:fixed;width:100%;">
     <div><img src="photos/images.jpeg" data-toggle="modal" data-target="#exampleModal"></div>
