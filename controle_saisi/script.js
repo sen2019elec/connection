@@ -56,7 +56,9 @@
                 document.getElementById('error3').innerHTML=error3;
                 return false;
             }
+
             else{
+        
                 document.getElementById('error3').innerHTML=""; } 
            
                 if (!mot_de_passe.value.trim()) {
